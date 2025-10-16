@@ -51,8 +51,8 @@ class DatasetTrain(Dataset):
         self.transforms_aug = [method for method in dir(self.augment) if callable(getattr(self.augment, method)) if not method.startswith('_')] 
         
         input_filenames = sorted(os.listdir(os.path.join(data_dir, input_folder)))
-        #gt_filenames   = sorted(os.listdir(os.path.join(data_dir, gt_folder)))
-        gt_filenames = [x[:-7]+'.png' for x in input_filenames]
+        gt_filenames   = sorted(os.listdir(os.path.join(data_dir, gt_folder)))
+        # gt_filenames = [x[:-7]+'.png' for x in input_filenames]
         
         self.input_paths = [os.path.join(data_dir, input_folder, x) for x in input_filenames if is_image_file(x)]
         self.gt_paths    = [os.path.join(data_dir, gt_folder, x)    for x in gt_filenames    if is_image_file(x)]
