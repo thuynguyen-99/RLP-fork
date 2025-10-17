@@ -52,8 +52,8 @@ class DatasetTrain(Dataset):
         gt_filenames   = sorted(os.listdir(os.path.join(data_dir, gt_folder)))
         # gt_filenames = [x[:-7]+'.png' for x in input_filenames]
         
-        self.input_paths = [os.path.join(data_dir, input_folder, x) for x in input_filenames if is_image_file(x)]
-        self.gt_paths    = [os.path.join(data_dir, gt_folder, x)    for x in gt_filenames    if is_image_file(x)]
+        self.input_paths = [os.path.join(data_dir, input_folder, x) for x in input_filenames[:500] if is_image_file(x)]
+        self.gt_paths    = [os.path.join(data_dir, gt_folder, x)    for x in gt_filenames[:500]    if is_image_file(x)]
         
         self.img_options = img_options
 
