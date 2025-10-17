@@ -119,7 +119,12 @@ criterion = CharbonnierLoss().cuda()
 ########## DataLoader ##########
 print('===> Loading datasets')
 img_options_train = {'patch_size':opt.train_ps}
-train_dataset = DatasetTrain(opt.train_dir, img_options_train)
+train_dataset = DatasetTrain(
+    data_dir=opt.train_dir,
+    input_folder=opt.train_input_folder,
+    gt_folder=opt.train_gt_folder,
+    img_options=img_options_train,
+)
 train_loader = DataLoader(dataset=train_dataset, batch_size=opt.batch_size, shuffle=True, 
                           num_workers=opt.train_workers, pin_memory=False, drop_last=False)
 
