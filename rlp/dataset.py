@@ -42,20 +42,18 @@ class Augment_RGB_torch:
     
 ##################################################################################################
 class DatasetTrain(Dataset):
-    def __init__(self, data_dir, img_options=None):
+    def __init__(self, data_dir, input_folder="rainy", gt_folder="gt", img_options=None):
         super(DatasetTrain, self).__init__()
 
-        input_folder = 'rainy'
-        gt_folder = 'gt'
         self.augment   = Augment_RGB_torch()
         self.transforms_aug = [method for method in dir(self.augment) if callable(getattr(self.augment, method)) if not method.startswith('_')] 
         
         input_filenames = sorted(os.listdir(os.path.join(data_dir, input_folder)))
-        #gt_filenames   = sorted(os.listdir(os.path.join(data_dir, gt_folder)))
-        gt_filenames = [x[:-7]+'.png' for x in input_filenames]
+        gt_filenames   = sorted(os.listdir(os.path.join(data_dir, gt_folder)))
+        # gt_filenames = [x[:-7]+'.png' for x in input_filenames]
         
-        self.input_paths = [os.path.join(data_dir, input_folder, x) for x in input_filenames if is_image_file(x)]
-        self.gt_paths    = [os.path.join(data_dir, gt_folder, x)    for x in gt_filenames    if is_image_file(x)]
+        self.input_paths = [os.path.join(data_dir, input_folder, x) for x in input_filenames[:500] if is_image_file(x)]
+        self.gt_paths    = [os.path.join(data_dir, gt_folder, x)    for x in gt_filenames[:500]    if is_image_file(x)]
         
         self.img_options = img_options
 
