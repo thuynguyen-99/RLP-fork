@@ -12,8 +12,8 @@ def parse_options():
 
     # args for training
     parser.add_argument('--train_dir', type=str, default ='/path/to/train/data',  help='dir of train data')
-    parser.add_argument('--train_input_folder', type=str, default ='/path/to/train/data/rainy',  help='dir of train rainy data')
-    parser.add_argument('--train_gt_folder', type=str, default ='/path/to/train/data/gt',  help='dir of train gt data')
+    parser.add_argument('--train_input_folder', type=str, default ='rainy',  help='dir of train rainy data')
+    parser.add_argument('--train_gt_folder', type=str, default ='gt',  help='dir of train gt data')
     parser.add_argument('--train_ps', type=int, default=256, help='patch size of training sample')
     parser.add_argument('--batch_size', type=int, default=4, help='batch size')
     parser.add_argument('--train_workers', type=int, default=8, help='train_dataloader workers')
