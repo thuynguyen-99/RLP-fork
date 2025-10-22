@@ -150,7 +150,7 @@ train_dataset = DatasetTrain(
     gt_folder=opt.train_gt_folder,
     img_options=img_options_train,
 )
-# train_dataset = RepeatPatchDataset(train_dataset, repeat=8)
+train_dataset = RepeatPatchDataset(train_dataset, repeat=8)
 train_loader = DataLoader(
     dataset=train_dataset,
     batch_size=opt.batch_size,
