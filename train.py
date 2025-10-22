@@ -167,7 +167,7 @@ print("===> Start Epoch {}, End Epoch {}".format(start_epoch, opt.nepoch))
 
 loss_scaler = NativeScaler()
 torch.cuda.empty_cache()
-for epoch in range(start_epoch, opt.nepoch):
+for epoch in range(start_epoch, opt.nepoch + 1):
     epoch_start_time = time.time()
     epoch_loss = 0
 
