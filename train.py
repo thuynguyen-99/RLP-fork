@@ -14,7 +14,7 @@ from torch.utils.data import DataLoader
 from timm.utils import NativeScaler
 # from pdb import set_trace as stx
 
-from rlp.loss import CharbonnierLoss
+from rlp.loss import Loss
 from rlp.models import model_utils
 from rlp.options import parse_options
 from rlp.dataset import *
@@ -140,8 +140,7 @@ if opt.resume:
     )
 
 ########## Loss ##########
-criterion = CharbonnierLoss().cuda()
-
+criterion = Loss().cuda()
 ########## DataLoader ##########
 print("===> Loading datasets")
 img_options_train = {"patch_size": opt.train_ps}
@@ -151,7 +150,7 @@ train_dataset = DatasetTrain(
     gt_folder=opt.train_gt_folder,
     img_options=img_options_train,
 )
-train_dataset = RepeatPatchDataset(train_dataset, repeat=8)
+# train_dataset = RepeatPatchDataset(train_dataset, repeat=8)
 train_loader = DataLoader(
     dataset=train_dataset,
     batch_size=opt.batch_size,
