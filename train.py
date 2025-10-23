@@ -111,33 +111,34 @@ else:
     scheduler.step()
 
 ########## Resume ##########
-if opt.resume:
+if opt.pretrain_weights:
     path_chk_rest = opt.pretrain_weights
-    print("Resume from " + path_chk_rest)
     model_utils.load_checkpoint(model_restoration, path_chk_rest)
-    start_epoch = model_utils.load_start_epoch(path_chk_rest) + 1
-    lr = model_utils.load_optim(optimizer, path_chk_rest)
+    if opt.resume:
+        print("Resume from " + path_chk_rest)
+        start_epoch = model_utils.load_start_epoch(path_chk_rest) + 1
+        lr = model_utils.load_optim(optimizer, path_chk_rest)
 
-    # for p in optimizer.param_groups: p['lr'] = lr
-    # warmup = False
-    # new_lr = lr
-    # print('------------------------------------------------------------------------------')
-    # print("==> Resuming Training with learning rate:",new_lr)
-    # print('------------------------------------------------------------------------------')
-    for i in range(1, start_epoch):
-        scheduler.step()
-    new_lr = scheduler.get_lr()[0]
-    print(
-        "------------------------------------------------------------------------------"
-    )
-    print("==> Resuming Training with learning rate:", new_lr)
-    print(
-        "------------------------------------------------------------------------------"
-    )
+        # for p in optimizer.param_groups: p['lr'] = lr
+        # warmup = False
+        # new_lr = lr
+        # print('------------------------------------------------------------------------------')
+        # print("==> Resuming Training with learning rate:",new_lr)
+        # print('------------------------------------------------------------------------------')
+        for i in range(1, start_epoch):
+            scheduler.step()
+        new_lr = scheduler.get_lr()[0]
+        print(
+            "------------------------------------------------------------------------------"
+        )
+        print("==> Resuming Training with learning rate:", new_lr)
+        print(
+            "------------------------------------------------------------------------------"
+        )
 
-    scheduler = optim.lr_scheduler.CosineAnnealingLR(
-        optimizer, opt.nepoch - start_epoch + 1, eta_min=1e-6
-    )
+        scheduler = optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, opt.nepoch - start_epoch + 1, eta_min=1e-6
+        )
 
 ########## Loss ##########
 criterion = CharbonnierLoss().cuda()
