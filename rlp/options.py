@@ -35,7 +35,7 @@ def parse_options():
 
     # args for resuming training
     parser.add_argument('--resume', action='store_true',default=False)
-    parser.add_argument('--pretrain_weights',type=str, default='./log/Uformer_B/models/model_best.pth', help='path of pretrained_weights')
+    parser.add_argument('--pretrain_weights',type=str, default=None, help='path of pretrained_weights')
 
     # args for Uformer
     parser.add_argument('--dd_in', type=int, default=3, help='dd_in')
