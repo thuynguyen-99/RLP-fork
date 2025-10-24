@@ -87,7 +87,7 @@ else:
 if torch.cuda.device_count() > 1:
     model_restoration = torch.nn.DataParallel(model_restoration, device_ids=[0, 1])
     print("Let's use", torch.cuda.device_count(), "GPUs!")
-# model_restoration.cuda()
+model_restoration.cuda()
 
 
 ########## Scheduler ##########
