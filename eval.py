@@ -8,7 +8,7 @@ import kornia
 
 from tqdm import tqdm
 from torchvision.io import read_image
-
+from pathlib import Path
 
 def rgb_to_ycbcr(img):
     """
@@ -75,6 +75,7 @@ def evaluate(root_dir, gt_root_dirs, datasets, methods):
                 if f.endswith((".jpg", ".png"))
             ]
             # Use gt_root_dir to construct gt_files paths
+            raw_gt_files = os.listdir(gt_root_dir)
             gt_files = []
             for f in image_files:
                 base = os.path.basename(f)
@@ -83,7 +84,8 @@ def evaluate(root_dir, gt_root_dirs, datasets, methods):
                 if dataset == "gtav":
                     gt_name = name.split("_")[0] + ".png"
                 else:
-                    gt_name = base
+                    gt_file = next((img for img in raw_gt_files if Path(img).stem in name), None)
+                    gt_name = gt_file
                 gt_files.append(os.path.join(gt_root_dir, gt_name))
 
             total_psnr = 0.0
