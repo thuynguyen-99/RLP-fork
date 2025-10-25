@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 
 
 def visualize_result(input_path: str, res_path: str, c_img: int = 5):
-    input_paths = sorted(glob.glob(f"{input_path}/*.png"))
+    input_paths = sorted(glob.glob(f"{input_path}/*.png") + glob.glob(f"{input_path}/*.jpg"))
     print("Number of input images:", len(input_paths))
 
-    res_paths = sorted(glob.glob(f"{res_path}/*.png"))
+    res_paths = sorted(glob.glob(f"{res_path}/*.png") + glob.glob(f"{res_path}/*.jpg"))
     print("Number of result images:", len(res_paths))
 
     for i, (inp, res) in enumerate(zip(input_paths[:c_img], res_paths[:c_img])):
