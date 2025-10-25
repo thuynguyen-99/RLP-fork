@@ -123,8 +123,8 @@ def evaluate(root_dir, gt_root_dirs, datasets, methods):
                 {
                     "dataset": dataset,
                     "method": method,
-                    "PSNR": avg_psnr,
-                    "SSIM": avg_ssim,
+                    "PSNR": avg_psnr.detach().cpu().item(),
+                    "SSIM": avg_ssim.detach().cpu().item(),
                 }
             )
 
