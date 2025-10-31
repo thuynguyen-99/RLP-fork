@@ -13,7 +13,7 @@ PRETRAINED_CHECKPOINT_PATH="/path/to/pretrained/checkpoint.pth"
 
 ## Dataset Structure
 ```
-/kaggle/input/spadata/spa/train/
+TRAIN_PATH
 ├── rain/          # Rainy images
 └── norain/        # Clean images
 ```
